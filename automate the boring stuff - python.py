@@ -1,5 +1,6 @@
 import random
 import copy
+import pprint
 
 names = ['sasha', 'ben', 'wes', 'owen']
 
@@ -123,3 +124,37 @@ print('I am bringing ' + str(picnicItems.get('Cheese', 2)) + ' cheese.')
 
 picnicItems.setdefault('Cheese', 2)
 print(picnicItems)
+
+charCountMessage = 'It was a bright cold day in April, and the clocks were striking thirteen.'
+count = {}
+
+for character in charCountMessage:
+    count.setdefault(character, 0)
+    count[character] = count[character] + 1
+
+# pprint.pprint(count)
+print(pprint.pformat(count))
+
+# tic tac toe
+theBoard = {'top-L': ' ', 'top-M': ' ', 'top-R': ' ',
+           'mid-L': ' ', 'mid-M': ' ', 'mid-R': ' ',
+           'low-L': ' ', 'low-M': ' ', 'low-R': ' '}
+
+def printBoard(myBoard):
+    print(myBoard['top-L'], '|' ,myBoard['top-M'], '|' ,myBoard['top-R'])
+    print('- + - + -')
+    print(myBoard['mid-L'], '|' ,myBoard['mid-M'], '|' ,myBoard['mid-L'])
+    print('- + - + -')
+    print(myBoard['low-L'], '|' ,myBoard['low-M'], '|' ,myBoard['low-R'])
+
+turn = 'X'
+for i in range(9):
+    printBoard(theBoard)
+    print(turn + ' turn to move')
+    move = input()
+    theBoard[move] = turn
+    if turn == 'X':
+        turn = 'O'
+    else:
+        turn = 'X'
+printBoard(theBoard)

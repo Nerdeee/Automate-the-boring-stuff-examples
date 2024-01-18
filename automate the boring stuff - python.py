@@ -1,4 +1,5 @@
 import random
+import copy
 
 names = ['sasha', 'ben', 'wes', 'owen']
 
@@ -49,3 +50,76 @@ print(testRemList)
 userNames = ['Bob', 'andrew', 'zac', 'Tim', 'Chris']
 userNames.sort(key=str.lower)
 print(userNames)
+
+# \
+print('The man in the ' + \
+      'yellow hat')
+
+# ranges in strings
+
+rangeInStringName = "Louis"
+print(rangeInStringName[1:3])
+
+newRangeInStringName = rangeInStringName[0:3] + "uygwgyqgyf" + rangeInStringName[2:4]
+print(newRangeInStringName)
+
+# tuple and list casting 
+print(tuple([1,2,3]))
+print(list((1,2,3)))
+
+# references 
+reg_list = [1,2,3]
+ref_list = reg_list
+ref_list[1] = 10
+print(reg_list)
+print(ref_list)
+
+# copy
+spam_copy = ['A', 'B', 'C', 'D']
+print(id(spam_copy))
+spam_cheese = copy.copy(spam_copy)
+print(id(spam_cheese))
+
+spam_cheese[1] = '42'
+print('spam_copy = ', spam_copy)
+print('spam_cheese = ', spam_cheese)
+
+# dictionary
+myCat = {'size': 'fat', 'color': 'gray', 'disposition': 'loud'}
+yourCat = {'disposition': 'loud', 'color': 'gray', 'size': 'fat'}
+print(myCat['size'])
+print(myCat == yourCat)
+
+birthdays = {'Alice': 'Mar 4', 'Bob': 'April 7'}
+
+while True:
+    print('Enter your name')
+    name = input()
+    if name == '':
+        break
+    if name in birthdays:
+        print('your bithday is ', birthdays[name])
+    else:
+        print('Your birthday was not found in our database. Enter your birthday below:')
+        bday = input()
+        birthdays[name] = bday
+        print('Birthday database updated')
+
+# dictionary methods
+print()
+for items in birthdays.values():
+    print(items)
+
+print()
+
+for items in birthdays.items():
+    print(items)
+
+print('Alice' in birthdays.keys())
+
+# get() method
+picnicItems = {'Apple': 1, 'Ham': 3}
+print('I am bringing ' + str(picnicItems.get('Cheese', 2)) + ' cheese.')
+
+picnicItems.setdefault('Cheese', 2)
+print(picnicItems)

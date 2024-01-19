@@ -158,3 +158,44 @@ for i in range(9):
     else:
         turn = 'X'
 printBoard(theBoard)
+
+# Chapter 6 - Manipualting Strings
+
+# isX()
+stringIsAlNum = "Hello"
+print(stringIsAlNum.isalnum())
+stringIsSpace = " "
+print(stringIsSpace.isspace())
+print(stringIsAlNum.isspace())
+
+# startsWith, endsWith
+helloString = "Hello there"
+print(helloString.startswith('He'))
+
+# split, join
+print(', '.join(['Barrack', 'Obama']))
+longPhrase = 'This is a long phrase with lots of words with an s'
+print(longPhrase.split('s'))
+
+# partition
+partitionString = "This is a string that needs to be partitioned"
+firstPart, midPart, lastPart = partitionString.partition('n')
+print(firstPart)
+print(midPart)
+print(lastPart)
+
+# rjust, ljust, center
+print(partitionString.rjust(10))
+print(partitionString.ljust(5, '*'))
+print(partitionString.center(3, '-'))
+print('hello'.rjust(50))
+
+# picnicTable example
+def printPicnic(itemsDict, leftWidth, rightWidth):
+    print('PICNIC ITEMS'.center(leftWidth + rightWidth, '-'))
+    for k, v in itemsDict.items():
+        print(k.ljust(leftWidth, '.') + str(v).rjust(rightWidth))
+
+picnicItems = {'sandwhich': 4, 'apples': 12, 'cups': 4, 'cookies': 8000}
+printPicnic(picnicItems, 12, 5)
+printPicnic(picnicItems, 20, 6)

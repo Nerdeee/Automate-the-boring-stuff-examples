@@ -140,6 +140,7 @@ theBoard = {'top-L': ' ', 'top-M': ' ', 'top-R': ' ',
            'mid-L': ' ', 'mid-M': ' ', 'mid-R': ' ',
            'low-L': ' ', 'low-M': ' ', 'low-R': ' '}
 
+"""
 def printBoard(myBoard):
     print(myBoard['top-L'], '|' ,myBoard['top-M'], '|' ,myBoard['top-R'])
     print('- + - + -')
@@ -158,8 +159,45 @@ for i in range(9):
     else:
         turn = 'X'
 printBoard(theBoard)
+"""
 
 # Chapter 6 - Manipualting Strings
+
+# escape characters
+escCharString = 'That is Alice\'s cat'
+print(escCharString)
+
+# raw string
+print(r'hgueuhfueh\b\s\df\b')
+
+# multi-line string
+print('''Dear Bob
+      
+There is pizza in the fridge''')
+
+# slicing strings
+slicString = 'This is a string'
+print(slicString[5:7])
+
+print('This' in slicString)
+
+# string interpolation
+interpString_age = 40
+interpString_name = "George"
+interpString = 'Your name is %s and your age is %s ' % (interpString_name, interpString_age) 
+
+# f string
+f_name = 'Bill'
+f_age = 30
+f_String = f'Your name is {f_name} and you will be turning {f_age + 1} years old'
+print(f_String)
+
+# lower, upper, tolower toupper
+print(f_name.lower())
+f_name.lower()
+print(f_name)
+f_name = f_name.lower()
+print(f_name)
 
 # isX()
 stringIsAlNum = "Hello"
@@ -199,3 +237,30 @@ def printPicnic(itemsDict, leftWidth, rightWidth):
 picnicItems = {'sandwhich': 4, 'apples': 12, 'cups': 4, 'cookies': 8000}
 printPicnic(picnicItems, 12, 5)
 printPicnic(picnicItems, 20, 6)
+
+# strip, lstrip, rstrip
+wString = "      remove whitespace         "
+print(wString.lstrip())
+print(wString.strip())
+
+# ord, chr
+print(chr(ord('A') + 1))
+
+# English to Pig Latin
+'''print('Enter the English message to translate into Pig Latin: ')
+message = input()
+
+VOWELS = ('a', 'e', 'i', 'o', 'u', 'y')
+
+pigLatin = []
+for word in message.split():
+    prefixNonLetters = ''
+    while len(word) > 0 and not word[0].isalpha:
+        prefixNonLetters+=word[0]
+        word = word[1:]
+    if len(word) == 0:
+        pigLatin.append(prefixNonLetters)
+        continue
+'''
+
+print('Hello'.upper().isupper())

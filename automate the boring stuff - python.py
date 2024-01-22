@@ -1,6 +1,7 @@
 import random
 import copy
 import pprint
+import re
 
 names = ['sasha', 'ben', 'wes', 'owen']
 
@@ -140,7 +141,6 @@ theBoard = {'top-L': ' ', 'top-M': ' ', 'top-R': ' ',
            'mid-L': ' ', 'mid-M': ' ', 'mid-R': ' ',
            'low-L': ' ', 'low-M': ' ', 'low-R': ' '}
 
-"""
 def printBoard(myBoard):
     print(myBoard['top-L'], '|' ,myBoard['top-M'], '|' ,myBoard['top-R'])
     print('- + - + -')
@@ -159,45 +159,8 @@ for i in range(9):
     else:
         turn = 'X'
 printBoard(theBoard)
-"""
 
-# Chapter 6 - Manipualting Strings
-
-# escape characters
-escCharString = 'That is Alice\'s cat'
-print(escCharString)
-
-# raw string
-print(r'hgueuhfueh\b\s\df\b')
-
-# multi-line string
-print('''Dear Bob
-      
-There is pizza in the fridge''')
-
-# slicing strings
-slicString = 'This is a string'
-print(slicString[5:7])
-
-print('This' in slicString)
-
-# string interpolation
-interpString_age = 40
-interpString_name = "George"
-interpString = 'Your name is %s and your age is %s ' % (interpString_name, interpString_age) 
-
-# f string
-f_name = 'Bill'
-f_age = 30
-f_String = f'Your name is {f_name} and you will be turning {f_age + 1} years old'
-print(f_String)
-
-# lower, upper, tolower toupper
-print(f_name.lower())
-f_name.lower()
-print(f_name)
-f_name = f_name.lower()
-print(f_name)
+# Chapter 6 - Manipualting Strings]
 
 # isX()
 stringIsAlNum = "Hello"
@@ -226,6 +189,8 @@ print(lastPart)
 print(partitionString.rjust(10))
 print(partitionString.ljust(5, '*'))
 print(partitionString.center(3, '-'))
+print(partitionString.ljust(80, '*'))
+print(80-(len(partitionString)))
 print('hello'.rjust(50))
 
 # picnicTable example
@@ -264,3 +229,40 @@ for word in message.split():
 '''
 
 print('Hello'.upper().isupper())
+
+# regular expressions - .search(), .group(), .groups()
+
+phoneNumberRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
+mo = phoneNumberRegex.search('My number is 415-555-4242.')
+print('My phone number is: ' + mo.group())
+
+phoneNumberRegex2 = re.compile(r'(\d\d\d)-(\d\d\d-\d\d\d\d)')
+mo2 = phoneNumberRegex2.search('My number is 415-555-4242.')
+print('My area code is : ' + mo2.group(1) + ' and my phone number is ' + mo2.group(2))
+areaCode, phoneNumber = mo2.groups()
+
+print('My area code is: ' + areaCode + ' my phone number is ' + phoneNumber)
+
+heroRegex = re.compile(r'Batman|Tina Fey')
+mo1 = heroRegex.search('Batman and Tina Fey')
+print(mo1.group() + ' was found')
+
+batRegex = re.compile(r'Bat(man|mobile|copter)')
+mo3 = batRegex.search('Batmobile lost a wheel')
+print(mo3.group(1))
+
+phoneNumberOptional = re.compile(r'(\d\d\d-)?\d\d\d-\d\d\d\d')
+mo4 = phoneNumberOptional.search('My phone number is 123-456-7890')
+print('Matched full phone number: ' + mo4.group())
+
+mo5 = phoneNumberOptional.search('My phone number is 456-7890')
+print('Matched everything but the area code: ' + mo5.group())
+
+haRegex = re.compile(r'(Ha){3,5}')
+mo6 = haRegex.search('HaHaHaHaHa')
+print(mo6.group())
+
+mo7 = haRegex.search('Ha')
+print(mo7 == None)
+
+# ? has a double meaning in regular expressions. Either a nongreedy match when using something like {3,5} or it could mean that the part of the preceeding part is optional

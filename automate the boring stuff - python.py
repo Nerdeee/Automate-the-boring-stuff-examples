@@ -266,3 +266,38 @@ mo7 = haRegex.search('Ha')
 print(mo7 == None)
 
 # ? has a double meaning in regular expressions. Either a nongreedy match when using something like {3,5} or it could mean that the part of the preceeding part is optional
+
+# findall()
+
+findAllRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
+mo8 = findAllRegex.findall('Home: 123-456-7890 Work: 998-765-4321')
+print('findall method with no groups in reg expression', mo8)
+
+findAllRegexGroups = re.compile(r'(\d\d\d)-(\d\d\d)-(\d\d\d\d)')
+mo9 = findAllRegexGroups.findall('Home: 123-456-7890 Work: 998-765-4321')
+print('findall method with groups', mo9)
+
+# character classes
+
+xmasRegex = re.compile(r'\d+\s\w+')
+mo10 = xmasRegex.findall('12 drummers, 11 pipers, 10 lords, 9 ladies, 8 maids, 7 swans, 6 geese, 5 rings, 4 birds, 3 hens, 2 doves, 1 partridge')
+print(mo10)
+
+# ^ negative character class (find a substring that matches the opposite of what is defined in the regular expression)
+vowelRegex = re.compile(r'[aeiouAEIOU]')
+mo11 = vowelRegex.findall('Robocop eats baby food. BABY FOOD')
+print(mo11)
+
+consonantRegex = re.compile(r'[^aeiouAEIOU]')
+mo12 = consonantRegex.findall('Robocop eats baby food. BABY FOOD')
+print(mo12)
+
+# ^ can also be used at the beginnig of a regular expression to indicate tyhat the searched string must begin with this reg ex
+# $ is the opposite of ^ in that it must match the end of the searched string
+beginsWithHello = re.compile(r'^Hello')
+mo13 = beginsWithHello.search('Hello there')
+print(mo13)
+
+beginsAndEndsWithNum = re.compile(r'^\d+$')
+mo14 = beginsAndEndsWithNum.search('12345678')
+print(mo14)

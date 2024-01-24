@@ -301,3 +301,29 @@ print(mo13)
 beginsAndEndsWithNum = re.compile(r'^\d+$')
 mo14 = beginsAndEndsWithNum.search('12345678')
 print(mo14)
+
+# the wildcard "." character
+wildCardRegex = re.compile(r'.at')
+mo15 = wildCardRegex.findall("the cat in the hat had a bat to make things flat")
+print(mo15)
+
+nameRegex = re.compile(r'First Name: (.*) Last Name: (.*)')
+mo16 = nameRegex.search('First Name: Al Last Name: Sweigart')
+print(mo16.groups())
+print(mo16)
+
+newLineRegex = re.compile('.*', re.DOTALL)
+mo17 = newLineRegex.search('Serve the public trust.\nProtect the innocent.\nUphold the law.')
+print(mo17.group())
+
+# re.IGNORECASE - an argument you can pass into the compile method that will be case insensitive
+caseInsensitiveRegex = re.compile('wham', re.IGNORECASE)
+mo18 = caseInsensitiveRegex.search('The made a WHAM sound when it hit the sign')
+print(mo18.group())
+
+# sub()
+subNamesRegex = re.compile(r'Agent \w+')
+mo19 = subNamesRegex.sub('CENSORED', 'Agent Alice gave the secret documents to Agent Bob')
+print(mo19)
+
+# use re.VERBOSE for long expressions that allow multine regexs and comments
